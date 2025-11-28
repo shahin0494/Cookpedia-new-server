@@ -4,6 +4,7 @@ const userController = require("../controller/userController")
 const jwtMiddleWare = require("../middlewares/jwtMiddleware")
 const downloadController = require("../controller/downloadController")
 const saveController = require("../controller/saveRecipeController")
+const feedbackController=require("../controller/feedbackController")
 
 const routes = express.Router()
 
@@ -31,7 +32,14 @@ routes.post('/recipes/:id/save', jwtMiddleWare, saveController.addToCollectionCo
 // get save recipe
 routes.get('/recipes/saved', jwtMiddleWare, saveController.getSavedRecipesController)
 
-// get save recipe
+// delete save recipe
 routes.delete('/recipes/:id/delete', jwtMiddleWare, saveController.deleteSavedRecipeController)
+
+// get user download recipe
+
+// edit user profile
+
+// add feedback
+routes.post("/user/feedback",feedbackController.addFeedbackController)
 
 module.exports = routes
