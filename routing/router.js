@@ -5,6 +5,7 @@ const jwtMiddleWare = require("../middlewares/jwtMiddleware")
 const downloadController = require("../controller/downloadController")
 const saveController = require("../controller/saveRecipeController")
 const feedbackController=require("../controller/feedbackController")
+const adminJwtMiddleWare = require("../middlewares/adminMiddleware")
 
 const routes = express.Router()
 
@@ -41,5 +42,20 @@ routes.delete('/recipes/:id/delete', jwtMiddleWare, saveController.deleteSavedRe
 
 // add feedback
 routes.post("/user/feedback",feedbackController.addFeedbackController)
+
+// get all feedbacks - all users
+routes.get('/user/feedbacks/approved',feedbackController.getfeedbackApprovedListController)
+
+// get all users - admin
+routes.get('/users',adminJwtMiddleWare,userController.getAllUsersController)
+
+// get all downloads - admin
+routes.get('/downloads',adminJwtMiddleWare,downloadController.getDownloadListController)
+
+// get all feedbacks - admin
+routes.get('/feedbacks',adminJwtMiddleWare,feedbackController.getFeedbackListController)
+
+// change feedbacks status - admin
+routes.put('/feedbacks/:id/edit',adminJwtMiddleWare,feedbackController.updateFeedbackStatusController)
 
 module.exports = routes
