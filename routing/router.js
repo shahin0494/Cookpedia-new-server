@@ -46,6 +46,8 @@ routes.post("/user/feedback",feedbackController.addFeedbackController)
 // get all feedbacks - all users
 routes.get('/user/feedbacks/approved',feedbackController.getfeedbackApprovedListController)
 
+// admin
+
 // get all users - admin
 routes.get('/users',adminJwtMiddleWare,userController.getAllUsersController)
 
@@ -57,5 +59,15 @@ routes.get('/feedbacks',adminJwtMiddleWare,feedbackController.getFeedbackListCon
 
 // change feedbacks status - admin
 routes.put('/feedbacks/:id/edit',adminJwtMiddleWare,feedbackController.updateFeedbackStatusController)
+
+// add recipe
+routes.post('/recipe/add',adminJwtMiddleWare,recipeController.addRecipeController)
+
+// delete recipe
+routes.delete('/recipe/:id',adminJwtMiddleWare,recipeController.removeRecipeController)
+
+// edit recipe - admin
+routes.put('/recipe/:id',adminJwtMiddleWare,recipeController.updateRecipeController)
+
 
 module.exports = routes
