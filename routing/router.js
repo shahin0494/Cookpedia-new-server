@@ -52,7 +52,7 @@ routes.get('/user/feedbacks/approved',feedbackController.getfeedbackApprovedList
 routes.get('/users',adminJwtMiddleWare,userController.getAllUsersController)
 
 // get all downloads - admin
-routes.get('/downloads',adminJwtMiddleWare,downloadController.getDownloadListController)
+routes.get('/downloads',jwtMiddleWare,downloadController.getDownloadListController)
 
 // get all feedbacks - admin
 routes.get('/feedbacks',adminJwtMiddleWare,feedbackController.getFeedbackListController)
